@@ -1,7 +1,7 @@
 import { useRef, useState, type PointerEvent } from 'react';
 import type { Side } from './useTimezones';
 
-const STORAGE_KEY = 'chrono2.signPosition';
+const STORAGE_KEY = 'dual-clock.signPosition';
 
 // 0 = far left of the panel, 1 = far right; signs start next to the divider
 const DEFAULTS: Record<Side, number> = { left: 1, right: 0 };

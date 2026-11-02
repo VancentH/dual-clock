@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type RefObject } from 'react';
 import { SCENE_ASPECT } from '../config/scenes';
 
-const STORAGE_KEY = 'chrono2.split';
+const STORAGE_KEY = 'dual-clock.split';
 
 // Keeps room for the hanging sign (its widest size plus the edge gaps)
 const MIN_PANEL = 300;

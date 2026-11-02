@@ -4,7 +4,7 @@ import { normalizeTimezone } from '../utils/timezones';
 
 export type Side = 'left' | 'right';
 
-const STORAGE_KEY = 'chrono2.timezones';
+const STORAGE_KEY = 'dual-clock.timezones';
 const DEFAULTS: Record<Side, string> = { left: DEFAULT_LEFT_ZONE, right: DEFAULT_RIGHT_ZONE };
 
 function readStorage(): Partial<Record<Side, string>> {

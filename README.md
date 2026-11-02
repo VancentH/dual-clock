@@ -1,6 +1,79 @@
-# chrono2
+# dual-clock
 
 Dual time zone clock with cat life scenes that follow local time.
+
+## Illustrations for other time zones
+
+Illustrations are only included for **Germany** (`Europe/Berlin`) and **Taiwan** (`Asia/Taipei`).
+Any other time zone still gets a working clock, but its panel shows a plain placeholder
+background instead of a scene. To add scenes for another region, you need to generate the
+images yourself and register them.
+
+The steps below show how Taiwan (`TW`, `Asia/Taipei`) is set up. To add your own region, follow the
+same steps and replace `tw` / `TW` / `Asia/Taipei` with your two-letter country code and time zone.
+
+### 1. Generate the images
+
+Create one image per scene, plus a `default` image that is shown for any scene you haven't made yet.
+You can start with just `default`.
+
+| Scene key   | Local time  |
+|-------------|-------------|
+| `sleep`     | 23:00–06:59 |
+| `breakfast` | 07:00–08:59 |
+| `work`      | 09:00–11:59 |
+| `lunch`     | 12:00–12:59 |
+| `afternoon` | 13:00–17:59 |
+| `dinner`    | 18:00–19:59 |
+| `relax`     | 20:00–22:59 |
+
+To match the existing scenes:
+
+- **Square**, around 2000 × 2000 px (PNG or JPEG)
+- A full indoor room in a hand-drawn picture-book style, with the cats taking up only a small part of the picture
+- Keep the cats away from the image's **inner edge**: the edge that faces the divider. Images are pinned to the
+  outer edge of the screen, so the divider can cover part of the inner side.
+
+### 2. Convert to WebP
+
+Save the originals in `assets-src/` (git-ignored) as `{country}-{scene}`, using a two-letter country code,
+e.g. `tw-default.png` or `tw-sleep.jpg`. Then run:
+
+```sh
+npm run scenes
+```
+
+This writes `public/scenes/tw/{scene}.webp`, with the longest edge resized to 1600 px.
+
+### 3. Map the time zone to the country
+
+In [`src/config/timezoneCountry.ts`](src/config/timezoneCountry.ts), add the country code to `Country`
+and map the time zone to it:
+
+```ts
+export type Country = 'TW' | 'DE';
+
+export const timezoneCountry: Record<string, Country> = {
+  'Asia/Taipei': 'TW',
+  'Europe/Berlin': 'DE',
+};
+```
+
+### 4. Register the scenes
+
+In [`src/config/scenes.ts`](src/config/scenes.ts), add an entry. `default` is required, and every other
+scene is optional:
+
+```ts
+TW: {
+  default: { src: `${base}scenes/tw/default.webp`, focus: '25% 65%' },
+  sleep: { src: `${base}scenes/tw/sleep.webp`, focus: '40% 60%' },
+  // breakfast, work, lunch, afternoon, dinner, relax …
+},
+```
+
+`focus` is a CSS `object-position`. It only matters when the image has to be cropped to fill its
+panel: on a very wide screen (top and bottom are cropped) or in the stacked mobile layout (sides are cropped).
 
 ## Third-party licenses
 
