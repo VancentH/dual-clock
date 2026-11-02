@@ -1,0 +1,67 @@
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/*
+ * Sized by the panel's height (not its width), so the image keeps its size and place
+ * while the divider moves. min-width only kicks in when the panel is wider than the
+ * image; object-fit then crops top/bottom around the scene's focus.
+ */
+.image {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: auto;
+  min-width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pinStart {
+  left: 0;
+}
+
+.pinEnd {
+  right: 0;
+}
+
+/* Stacked layout: size by width and pin to the top / bottom edge instead */
+@media (max-width: 768px) {
+  .image {
+    top: auto;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 100%;
+  }
+
+  .pinStart {
+    left: 0;
+    top: 0;
+  }
+
+  .pinEnd {
+    left: 0;
+    right: auto;
+    bottom: 0;
+  }
+}
+
+/* Scene change: the new image fades in over the previous one once it has loaded */
+.entering {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.entered {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entering {
+    /* Not 0, so transitionend still fires and the previous image is removed */
+    transition-duration: 0.01s;
+  }
+}

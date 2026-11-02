@@ -1,0 +1,103 @@
+.panel {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  /* Shown behind the image, and as the placeholder for unmapped time zones */
+  background: linear-gradient(160deg, #e9dcc6, #cdb99c);
+}
+
+.card {
+  /* Day palette: warm oak planks */
+  --wood-light: #b07a48;
+  --wood-dark: #8a5a32;
+  --frame: #5b3a1f;
+  --card-fg: #fbefd6;
+  --carve: #3e230e;
+  --carve-hover: #241306;
+  --carve-lip: rgba(255, 222, 175, 0.4);
+  --tile-bg: #2e1f13;
+  --tile-fg: #f6e7c8;
+  --rope-light: #d8c193;
+  --rope-dark: #9c8156;
+  --leaf-1: #5f8a46;
+  --leaf-2: #7fa65a;
+  --leaf-3: #9dbf6e;
+  --stem: #4b3420;
+  --sign-top: clamp(32px, 4vw, 48px);
+  --wood-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.16' numOctaves='3' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.22 0 0 0 0 0.12 0 0 0 0 0.05 1.5 0 0 0 -0.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+
+  /* Horizontal position: --x (0–1, set from JS) across the panel's free space */
+  --card-w: clamp(196px, 22vw, 248px);
+  --edge: 24px;
+
+  position: absolute;
+  top: var(--sign-top);
+  left: calc(var(--edge) + var(--x, 0) * (100% - var(--card-w) - 2 * var(--edge)));
+  width: var(--card-w);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 1.2rem 1rem 1.1rem;
+  border: 7px solid var(--frame);
+  border-radius: 12px;
+  color: var(--card-fg);
+  /* Wood grain over horizontal planks */
+  background:
+    var(--wood-grain),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 58px,
+      rgba(40, 20, 8, 0.55) 58px 60px,
+      rgba(255, 225, 180, 0.14) 60px 61px
+    ),
+    linear-gradient(170deg, var(--wood-light), var(--wood-dark));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 220, 170, 0.18),
+    inset 0 3px 10px rgba(0, 0, 0, 0.3),
+    0 14px 28px rgba(20, 10, 0, 0.35);
+  transition: color 1s ease;
+  z-index: 1;
+}
+
+/* Lift the open dropdown above the divider and the other panel */
+.card:focus-within {
+  z-index: 30;
+}
+
+/* Night: the same planks, darker and cooler */
+.night {
+  --wood-light: #6b4a30;
+  --wood-dark: #46301f;
+  --frame: #2f1f12;
+  --card-fg: #efe2c6;
+  /* Carving into the darker stain exposes lighter raw wood */
+  --carve: #d9b98c;
+  --carve-hover: #f0d6ad;
+  --carve-lip: rgba(255, 222, 175, 0.15);
+  --tile-bg: #1a120b;
+  --leaf-1: #2f5a46;
+  --leaf-2: #3f6e55;
+  --leaf-3: #567f62;
+  --rope-light: #a8956f;
+  --rope-dark: #6e5c3e;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dragging {
+  cursor: grabbing;
+  z-index: 30;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 220, 170, 0.18),
+    inset 0 3px 10px rgba(0, 0, 0, 0.3),
+    0 20px 36px rgba(20, 10, 0, 0.45);
+}

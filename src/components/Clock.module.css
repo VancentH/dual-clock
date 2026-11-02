@@ -1,0 +1,116 @@
+.clock {
+  /* Day dial: aged paper with dark ink */
+  --paper-center: #f3e7c9;
+  --paper-edge: #d4bf95;
+  --dial-ink: #2b231c;
+  --bezel: #1f1b17;
+  --second-hand: #a3362a;
+  --hub-cap: #b8975a;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Night dial: dark paper with pale ink (data-period is set on the panel) */
+[data-period='night'] .clock {
+  --paper-center: #2f3a4f;
+  --paper-edge: #1b2233;
+  --dial-ink: #ece0c2;
+  --second-hand: #e0795f;
+}
+
+.face {
+  width: clamp(130px, 17vw, 184px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 6px rgba(30, 24, 12, 0.35));
+}
+
+.paperCenter {
+  stop-color: var(--paper-center);
+  transition: stop-color 1s ease;
+}
+
+.paperEdge {
+  stop-color: var(--paper-edge);
+  transition: stop-color 1s ease;
+}
+
+.grain {
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+}
+
+.bezel {
+  fill: var(--bezel);
+}
+
+.bezelHighlight {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1;
+}
+
+.ink {
+  fill: var(--dial-ink);
+  stroke: none;
+  transition: fill 1s ease, stroke 1s ease;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--dial-ink);
+  stroke-width: 0.8;
+}
+
+.minuteTick {
+  stroke: var(--dial-ink);
+  stroke-width: 0.6;
+}
+
+.numeral {
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 15px;
+  letter-spacing: -0.6px;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.hands {
+  filter: drop-shadow(0.6px 1.2px 0.8px rgba(0, 0, 0, 0.35));
+}
+
+.secondHand line {
+  stroke: var(--second-hand);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.secondHand circle {
+  fill: var(--second-hand);
+}
+
+.hubCap {
+  fill: var(--hub-cap);
+}
+
+.digital {
+  display: flex;
+  align-items: center;
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 0.08em;
+}
+
+.colon {
+  width: 0.45em;
+  text-align: center;
+}

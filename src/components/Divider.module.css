@@ -1,0 +1,99 @@
+.divider {
+  position: relative;
+  z-index: 10;
+  flex: 0 0 2px;
+  background: rgba(255, 250, 240, 0.85);
+  cursor: col-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Wider invisible grab area around the thin line */
+.divider::before {
+  content: '';
+  position: absolute;
+  inset: 0 -8px;
+}
+
+/* Time difference badge with the swap button below it, centred on the line */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: #fffaf0;
+  color: #4a3426;
+  font-weight: 800;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(40, 25, 10, 0.2);
+}
+
+.swap {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fffaf0;
+  color: #4a3426;
+  box-shadow: 0 4px 14px rgba(40, 25, 10, 0.2);
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+.swap:hover {
+  background: #fff3dc;
+  transform: rotate(180deg);
+}
+
+.swap:active {
+  transform: rotate(180deg) scale(0.92);
+}
+
+.swap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.swap svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 768px) {
+  .divider {
+    cursor: row-resize;
+  }
+
+  .divider::before {
+    inset: -8px 0;
+  }
+
+  /* Stacked layout: sit side by side on the horizontal line, arrows point up/down */
+  .center {
+    flex-direction: row;
+  }
+
+  .swap svg {
+    transform: rotate(90deg);
+  }
+}
