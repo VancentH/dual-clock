@@ -2,6 +2,8 @@
 
 Dual time zone clock with cat life scenes that follow local time.
 
+**Live demo:** <https://vancenth.github.io/dual-clock/>
+
 ## Illustrations for other time zones
 
 Illustrations are only included for **Germany** (`Europe/Berlin`) and **Taiwan** (`Asia/Taipei`).
