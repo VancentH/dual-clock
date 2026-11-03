@@ -20,11 +20,6 @@ export function normalizeTimezone(value: unknown): string | undefined {
   }
 }
 
-/** "America/Argentina/Buenos_Aires" → "Buenos Aires" */
-export function formatCityName(timeZone: string): string {
-  return timeZone.slice(timeZone.lastIndexOf('/') + 1).replace(/_/g, ' ');
-}
-
 /** "America/Argentina/Buenos_Aires" → "America / Argentina / Buenos Aires" */
 export function formatTimezoneName(timeZone: string): string {
   return timeZone.replace(/_/g, ' ').replace(/\//g, ' / ');

@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
-import { allTimezones, formatCityName, formatTimezoneName } from '../utils/timezones';
+import { allTimezones, formatTimezoneName } from '../utils/timezones';
 import styles from './TimezoneSelector.module.css';
 
 type Props = {
@@ -80,9 +80,7 @@ export function TimezoneSelector({ value, onChange, align }: Props) {
         aria-expanded={open}
         onClick={() => (open ? setOpen(false) : openDropdown())}
       >
-        <span className={styles.value} title={formatTimezoneName(value)}>
-          {formatCityName(value)}
-        </span>
+        <span className={styles.value}>{formatTimezoneName(value)}</span>
         <span className={styles.caret} aria-hidden="true">▾</span>
       </button>
 

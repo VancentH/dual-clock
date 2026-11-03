@@ -38,9 +38,9 @@
 
 /* A carved groove under the name hints that it can be clicked */
 .value {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /* Long names (e.g. America / Argentina / Buenos Aires) wrap instead of being cut off */
+  text-align: center;
+  overflow-wrap: anywhere;
   padding-bottom: 3px;
   border-bottom: 2px solid color-mix(in srgb, var(--carve) 45%, transparent);
   box-shadow: 0 1px 0 var(--carve-lip);
