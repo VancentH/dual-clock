@@ -3,8 +3,8 @@ import type { Side } from './useTimezones';
 
 const STORAGE_KEY = 'dual-clock.signPosition';
 
-// 0 = far left of the panel, 1 = far right; signs start next to the divider
-const DEFAULTS: Record<Side, number> = { left: 1, right: 0 };
+// 0 = far left of the panel, 1 = far right; signs start centred in their panel
+const DEFAULTS: Record<Side, number> = { left: 0.5, right: 0.5 };
 
 // Elements inside the sign that keep their own click behaviour
 const INTERACTIVE = 'button, input, [role="listbox"], [data-no-drag]';
